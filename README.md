@@ -1,0 +1,2 @@
+# devopsPracticeAzure
+devops practice
