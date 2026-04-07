@@ -1,39 +1,45 @@
-name : azure
-on :  
+name: azure login
+on:
   push:
     branches:
       - main
   pull_request:
     branches:
-        - main
+      - main
   workflow_dispatch:
     inputs:
-      description: "env to deploy"
-      default : "dev"
-      type : choice
-      options :
-           - "dev" 
-           - "qa"
-           - "prod"
+      environment:
+        description: "Env to deploy"
+        required: true
+        default: "dev"
+        type: choice
+        options:
+          - dev
+          - qa
+          - prod
+
 permissions:
-  id-token : write
+  id-token: write
   contents: read
+
 jobs:
   login:
     name: az login
     runs-on: ubuntu-latest
+
     steps:
-      - name: checkout
-        uses: actions/checkout@v6.0.2
-      - name: azure login
-        uses: azure/login@v3
+      - name: Checkout repo
+        uses: actions/checkout@v4
+
+      - name: Azure login
+        uses: azure/login@v2
         with:
-          client-id:  "23576045-017e-4d10-8ad9-d0426599a118"
-          subscription-id:  "0fe2604a-a62d-4f0c-8f57-3f547fa2291a"
-          tenant-id:  "f3a7f9ec-a9ee-4582-826d-6fdd1b261016"
-      - name: verify login
-        shell: bash
+          client-id: "x"
+          tenant-id: "z"
+          subscription-id: "y"
+
+      - name: Verify login
         run: |
-             echo "az login successful"
-             az account show
-             az group list --output table
+          echo "az login successful"
+          az account show
+          az group list --output table
