@@ -2,19 +2,18 @@ name : azure
 on :  
   push:
     branches:
-      -main
+      - main
   pull_request:
     branches:
-        -main
+        - main
   workflow_dispatch:
     inputs:
-      environment :
-      description : "env to deploy"
-      required : true
+      description: "env to deploy"
+      required: true
       default : "dev"
       type : choice
       options :
-           - "dev"
+           - "dev" 
            - "qa"
            - "prod"
 permissions:
