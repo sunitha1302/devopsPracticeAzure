@@ -9,7 +9,6 @@ on :
   workflow_dispatch:
     inputs:
       description: "env to deploy"
-      required: true
       default : "dev"
       type : choice
       options :
